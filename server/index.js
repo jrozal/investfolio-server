@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const port = 3001;
 const router = require('./routes');
 
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
