@@ -1,5 +1,6 @@
 const redis = require('redis');
-const client = redis.createClient();
+const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
+const client = redis.createClient(REDIS_URL);
 
 const setCache = (key, value) => {
   client.setex(key, 60, JSON.stringify(value));
