@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "db-seed": "node database/populate.js",
-    "start-dev": "nodemon index.js",
-    "start": "node index.js"
+    "start-dev": "nodemon server",
+    "start": "node server",
+    "build": "npm install"
   },
   "keywords": [],
   "author": "",
