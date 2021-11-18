@@ -2,15 +2,32 @@ const config = require('../config');
 const { db: { database, username, password, host, dialect } } = config;
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize(database, username, password, {
-  host: host,
-  dialect: dialect,
-  dialectOptions: {
-    ssl: {
-      rejectUnauthorized: false,
+let sequelize;
+
+if (process.env.DATABASE_URL) {
+  // the application is executed on Heroku ... use the postgres database
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect:  'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false
+      }
     }
-  }
-});
+  });
+} else {
+  // the application is executed on the local machine
+  sequelize = new Sequelize(database, username, password, {
+    host: host,
+    dialect: dialect,
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false,
+      }
+    }
+  });
+}
+
 
 const dbConnection = async () => {
   try {
