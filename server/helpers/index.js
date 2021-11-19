@@ -84,7 +84,7 @@ const calculatePortfolioData = async (apiDataRecord, queryDataRecord) => {
     portfolioData: newData,
     portfolioAllocation: portfolioAllocation,
     portfolioValue: portfolioValue,
-    todaysChange: todaysProfitLoss / portfolioValue
+    todaysChange: (todaysProfitLoss / portfolioValue) * 100
   }
 };
 
