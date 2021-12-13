@@ -4,7 +4,7 @@ const { calculatePortfolioData } = require('../helpers');
 const { setCache } = require('../services/cache');
 
 function getMarketIndexData(req, res) {
-  api.getMarketIndexData()
+  api.getMarketIndexData(req.query)
     .then(data => {
       setCache(req.route.path, data);
       res.status(200).send(data)

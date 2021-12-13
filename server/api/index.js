@@ -4,11 +4,11 @@ const { finnhubApiKey } = config;
 const { parseIndexData } = require("../helpers");
 const finnhubURL = "https://finnhub.io/api/v1";
 
-async function getMarketIndexData() {
+async function getMarketIndexData(dateData) {
   try {
-    const date = new Date();
-    const day = date.getDay();
-    const currentTime = Math.floor(Date.now() / 1000);
+    const { day: dayStr, currentTime: currentTimeStr } = dateData;
+    const day = parseInt(dayStr);
+    const currentTime = parseInt(currentTimeStr);
     let yesterday;
 
     // if today is Saturday or Sunday, get data from Friday
